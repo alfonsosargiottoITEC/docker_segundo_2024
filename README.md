@@ -1,11 +1,13 @@
 ## Clonar el proyecto
 
 - hacer una copia del `.env.example` que se llame `.env` y configurarlo acorde a nuestras necesidades.
+- Establecer las variables de entorno y actualizar el `docker-compose` según nuestras preferencias.
 - Una vez configurado los puertos y demás, correr: `docker compose up --build`
 - Verificar que estén corriendo los contenedores con `docker ps`
 - Para obtener la IP de la DB, en caso de que no podamos conectar la app de Flask, correr:  
  `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql_database `
- - Conectarse a la DB a través de DBeaver y hacer un backup de la DB o cargar info.
+ - Conectarse a la DB a través de DBeaver y hacer un backup de la DB o cargar info si es necesario. Esta 
+ configuración ya se encarga de crearnos la estructura de la DB, lo cual nos deja la app lista para usar.
 
 
  ## A TENER EN CUENTA
