@@ -19,6 +19,9 @@ RUN pip install -r requirements.txt
 EXPOSE 5005
 
 # OPCIÓN 1
-ENV FLASK_APP=app/__init__.py
+# Setear las variables de entorno para Flask
+ENV FLASK_ENV=development
+ENV FLASK_DEBUG=1
 ENV FLASK_RUN_HOST=0.0.0.0
+
 CMD ["sh","run.sh"]
