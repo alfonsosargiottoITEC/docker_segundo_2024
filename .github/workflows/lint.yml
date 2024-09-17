@@ -32,4 +32,4 @@ jobs:
     # Paso 4: Ejecutar pylint
     - name: Run pylint
       run: |
-        pylint my_module  # Reemplaza 'my_module' por el nombre de tu módulo o carpeta a analizar
+        pylint app  # Reemplaza 'my_module' por el nombre de tu módulo o carpeta a analizar
