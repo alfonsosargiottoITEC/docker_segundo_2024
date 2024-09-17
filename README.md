@@ -8,7 +8,8 @@
  `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql_database `
  - Conectarse a la DB a través de DBeaver y hacer un backup de la DB o cargar info si es necesario. Esta 
  configuración ya se encarga de crearnos la estructura de la DB, lo cual nos deja la app lista para usar.
-
+- **Si no se crearon las tablas de la DB al momento de levantarse la app, prueben reseteando la app de Flask para que corra las migraciones con:  
+`docker container restart flask_app_a` (o el nombre que le hayan puesto)
 
  ## A TENER EN CUENTA
 
