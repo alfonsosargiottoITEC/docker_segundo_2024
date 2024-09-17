@@ -1,0 +1,35 @@
+# Nombre del flujo de trabajo, para identificarlo fácilmente
+name: CI - Lint with Pylint
+
+# Define cuándo se ejecuta este workflow, aquí en cada push o pull request
+on: [push, pull_request]
+
+# Los jobs son las tareas que se ejecutan
+jobs:
+  lint:
+    # El trabajo se ejecutará en un contenedor Ubuntu
+    runs-on: ubuntu-22.04
+
+    # Define los pasos del job
+    steps:
+    # Paso 1: Clonar el repositorio
+    - name: Checkout the repository
+      uses: actions/checkout@v3  # Usa la acción oficial de GitHub para hacer checkout del código
+
+    # Paso 2: Configurar Python en la versión especificada
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    # Paso 3: Instalar dependencias y pylint
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pylint
+
+    # Paso 4: Ejecutar pylint
+    - name: Run pylint
+      run: |
+        pylint my_module  # Reemplaza 'my_module' por el nombre de tu módulo o carpeta a analizar

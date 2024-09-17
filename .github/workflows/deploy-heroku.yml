@@ -1,0 +1,33 @@
+# Nombre del flujo de trabajo
+name: Deploy to Heroku
+
+# Este flujo de trabajo se ejecutará en cada push en la rama "main"
+on:
+  push:
+    branches:
+      - main
+      - master
+
+# Definir las tareas que componen este flujo de trabajo
+jobs:
+  deploy:
+    # El trabajo se ejecutará en un contenedor Ubuntu
+    runs-on: ubuntu-22.04
+
+    # Define los pasos del job
+    steps:
+    # Paso 1: Clonar el repositorio
+    - name: Checkout the repository
+      uses: actions/checkout@v3  # Usa la acción oficial de GitHub para clonar el repo
+
+    # Paso 2: Instalar la CLI de Heroku
+    - name: Install Heroku CLI
+      run: curl https://cli-assets.heroku.com/install.sh | sh  # Instala la CLI de Heroku
+
+    # Paso 3: Desplegar a Heroku
+    - name: Deploy to Heroku
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}  # Se necesita configurar HEROKU_API_KEY como un secreto
+      run: |
+        heroku git:remote -a <nombre-de-tu-app-en-heroku>  # Conecta tu repositorio con Heroku
+        git push heroku main  # Despliega tu aplicación a Heroku
