@@ -32,4 +32,4 @@ jobs:
     # Paso 4: Ejecutar pylint
     - name: Run pylint
       run: |
-        pylint app --fail-under=7.0 --recursive=y --enable=W  # Reemplaza 'my_module' por el nombre de tu módulo o carpeta a analizar
+        pylint app --fail-under=7.0 --recursive=y --enable=W

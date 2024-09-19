@@ -1,5 +1,5 @@
 # Nombre del flujo de trabajo, aparecerá en la pestaña de "Actions"
-name: CI - Test with Pytest
+name: CI - Test with Unittest
 
 # Define cuándo se ejecuta este workflow. En este caso, en cada push y pull request
 on: [push, pull_request]
@@ -31,4 +31,4 @@ jobs:
     # Paso 4: Ejecutar unittest
     - name: Run tests
       run: |
-        python -m unittest tests/test_antiguedad.py -v  
+        python -m unittest tests/* -v  
