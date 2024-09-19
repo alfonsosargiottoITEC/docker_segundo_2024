@@ -20,10 +20,10 @@ services:
  mysql_db:
    image: mysql:5.7  # Use the official MySQL 5.7 image from Docker Hub
    environment:
-     MYSQL_ROOT_PASSWORD: root  # Set the root password for MySQL
-     MYSQL_DATABASE: sql_alchemy_a  # Create a database named 'mydatabase'
-     MYSQL_USER: db_user  # Create a MySQL user 'myuser'
-     MYSQL_PASSWORD: root  # Set the password for 'myuser'
+     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}  # Set the root password for MySQL
+     MYSQL_DATABASE: ${MYSQL_DATABASE}  # Create a database named 'mydatabase'
+     MYSQL_USER: ${MYSQL_USER}  # Create a MySQL user 'myuser'
+     MYSQL_PASSWORD: ${MYSQL_PASSWORD}  # Set the password for 'myuser'
    volumes:
      - ./.data/db:/var/lib/mysql
    ports:
