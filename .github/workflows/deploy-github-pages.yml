@@ -1,0 +1,35 @@
+# Nombre del workflow para identificar que es el despliegue a GitHub Pages
+name: Deploy to GitHub Pages
+
+# Este flujo de trabajo se ejecutará cada vez que haya un push en la rama "main"
+on:
+  push:
+    branches:
+      - main
+
+# Definir las tareas que componen este flujo de trabajo
+jobs:
+  deploy:
+    # El trabajo se ejecutará en un contenedor Ubuntu
+    runs-on: ubuntu-22.04
+
+    # Define los pasos del job
+    steps:
+    # Paso 1: Clonar el repositorio
+    - name: Checkout the repository
+      uses: actions/checkout@v3  # Usa la acción oficial de GitHub para clonar el repo
+
+    # Paso 2: Compilar o preparar los archivos que quieres desplegar (si es necesario)
+    # Este paso es opcional, dependiendo de si tienes un proceso de build (React, Jekyll, etc.)
+    - name: Build the project (Optional)
+      run: |
+        # Instrucciones para compilar tu sitio si es necesario (por ejemplo npm run build para React)
+        npm install
+        npm run build
+
+    # Paso 3: Publicar en GitHub Pages
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3  # Acción para desplegar en GitHub Pages
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}  # El token permite el acceso para el despliegue
+        publish_dir: ./public  # Cambia 'public' por el directorio donde estén los archivos estáticos

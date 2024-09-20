@@ -1,0 +1,32 @@
+# Nombre del flujo de trabajo
+name: Deploy to Vercel
+
+# Este flujo de trabajo se ejecutará en cada push en la rama "main"
+on:
+  push:
+    branches:
+      - main
+      - master
+
+# Definir las tareas que componen este flujo de trabajo
+jobs:
+  deploy:
+    # El trabajo se ejecutará en un contenedor Ubuntu
+    runs-on: ubuntu-22.04
+
+    # Define los pasos del job
+    steps:
+    # Paso 1: Clonar el repositorio
+    - name: Checkout the repository
+      uses: actions/checkout@v3  # Usa la acción oficial de GitHub para clonar el repo
+
+    # Paso 2: Instalar la CLI de Vercel
+    - name: Install Vercel CLI
+      run: npm install -g vercel  # Instala la CLI de Vercel
+
+    # Paso 3: Desplegar a Vercel
+    - name: Deploy to Vercel
+      env:
+        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Se necesita configurar VERCEL_TOKEN como un secreto
+      run: |
+        vercel --prod  # Despliega tu aplicación a Vercel en producción
